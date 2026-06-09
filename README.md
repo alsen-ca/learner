@@ -7,6 +7,12 @@ Uses [Dear PyGui](https://github.com/hoffstadt/DearPyGui) toolkit.
 ## Limitations
 The languages of the audios are currently only available in German. This is noted and will hopefully get updated in due time.
 
+In addition, there are issues regarding the size of the fonts regarding the size of the screen.
+The app was created pretty quickly, as the actual logic is just some ~100 lines.
+So the size of the font is set automatically instad of being something relative like some `rem`.
+Doing this cleanly in python and dearpyhui specifically will not be worth the hassle for me, specially if the app countinues to get updated in the future.
+If anything, this app will be rewrittento Tauri while it is still small. Do keep updated regarding that.
+
 ## Requirements
 The system requires the following dependencies in order to work.
 Changing one might cause unexpected behaviour or the compilation to fail.
@@ -80,11 +86,11 @@ For Linux:
 
 ## Dev
 The setup for the development environment is for Linux.
-More specifically, a system using Debian 13.5 as the OS, Hyprland 0.53.3 for the DE and nerdctl pn rootless mode for the containerization tool.
-The following steps might not work if these do not match and behave unexpectedly or not start due to errors.
+More specifically, a system using Debian 13.5 as the OS, Hyprland 0.53.3 for the DE, Pulseaduio 17.0 for audio and nerdctl on rootless mode for the containerization tool.
+The start-dev.sh is written for this exact setup, so it might not work if these do not match and behave unexpectedly or not start the application at all.
 
-It is not neccesary to follow the app inside a container, but it might be beneficial for development and not install the extra dependencies on the system.
-On the actual machine where the app will be used, it is recommended to run the code on the actual application.
+It is not neccesary to have the app inside a container, but it might be beneficial for development and not install the extra dependencies on the system.
+I would recommend to run the code natively on the end-user machine, and not use any container.
 
 Build and start the image:
 
@@ -94,6 +100,7 @@ Build and start the image:
 Do note that dearpygui requires a display server library in order to show the app.
 Thats why the Dockerfile has those lines installing the whole dependencies.
 The start-dev.sh will forward the non-root user's display. It requires X11.
+It will also require to forward the system's audio socket.
 
 
 ## Compatibility issues
