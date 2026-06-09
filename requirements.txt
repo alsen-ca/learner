@@ -1,0 +1,2 @@
+pygame==2.6.1
+dearpygui==2.3.1
