@@ -4,6 +4,8 @@ Simple application that outputs an audio file when a letter is clicked.
 Goal of the app is to learn how each letter of the Alphabet sounds.
 Uses [Dear PyGui](https://github.com/hoffstadt/DearPyGui) toolkit.
 
+## Limitations
+The languages of the audios are currently only available in German. This is noted and will hopefully get updated in due time.
 
 ## Requirements
 The system requires the following dependencies in order to work.
@@ -112,9 +114,12 @@ It has not been tested for MacOS at all, but there might be some errors.
 
 ## Licences
 ### Code
-The license for the actual code of the app is MIT.
+The source code is licensed under the [MIT License](LICENSE).
 
 ### Fonts
 This app uses the [Liberation Sans](https://github.com/liberationfonts/liberation-fonts) typeface, which is licensed under the [SIL Open Font License, Version 1.1](https://scripts.sil.org/OFL).
 
 The font files and license are included in `assets/fonts/` for convenience.
+
+### Audio
+Audio assets in `assets/audios/` are proprietary. See `assets/audios/LICENSE`.
