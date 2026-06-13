@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { invoke } from "@tauri-apps/api/core";
-import chevronLeft from "../assets/chevron-left.svg?url"
-import chevronRight from "../assets/chevron-right.svg?url"
-import arrowLeft from "../assets/arrow-big-left.svg?url"
 
 const emit = defineEmits(['back-to-start']);
 
@@ -28,14 +25,14 @@ function onLetterClick() {
 <template>
     <div class="words-container">
         <div class="left-pannel">
-            <img :src="chevronLeft" alt="previous character" class="arrow-button" @click="previous"/>
-            <img :src="arrowLeft" alt="Go back to Main Page" class="back-button" @click="emit('back-to-start')"/>
+            <img src="../assets/chevron-left.svg" alt="previous character" class="arrow-button" @click="previous"/>
+            <img src="../assets/arrow-big-left.svg" alt="Go back to Main Page" class="back-button" @click="emit('back-to-start')"/>
         </div>
         <div class="middle-pannel">
             <button class="main-letter" @click="onLetterClick">{{ currentLetter }}</button>
         </div>
         <div class="right-pannel">
-            <img :src="chevronRight" title="next character" class="arrow-button" @click="next"/>
+            <img src="../assets/chevron-right.svg" title="next character" class="arrow-button" @click="next"/>
         </div>
     </div>
 </template>

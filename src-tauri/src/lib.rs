@@ -1,22 +1,26 @@
 use std::{sync::Mutex,fs::File,io::BufReader};
 use rodio::{OutputStream, OutputStreamBuilder, Sink, Decoder};
-
+use tauri::Manager;
 
 struct AudioState(Mutex<(OutputStream, Sink)>);
 
 #[tauri::command]
-fn play_sound(letter: String, state: tauri::State<AudioState>) -> Result<(), String> {
-    println!("Sound clicked to be played");
-    let path = format!("assets/audios/de/{}.ogg", letter.to_uppercase());
-
+fn play_sound(letter: String, app: tauri::AppHandle, state: tauri::State<AudioState>) -> Result<(), String> {
     let guard = state.0.lock().map_err(|e| e.to_string())?;
     let (_, sink) = &*guard;
 
-    let file = BufReader::new(File::open(&path).map_err(|e: std::io::Error| e.to_string())?);
-    let source = Decoder::new(file).map_err(|e: rodio::decoder::DecoderError| e.to_string())?;
+    if !sink.empty() {
+        return Ok(()); // already playing something, ignore function call
+    }
+
+    let resource_path = app.path()
+        .resolve(format!("assets/audios/de/{}.ogg", letter.to_uppercase()), tauri::path::BaseDirectory::Resource)
+        .map_err(|e| e.to_string())?;
+
+    let file = BufReader::new(File::open(&resource_path).map_err(|e| e.to_string())?);
+    let source = Decoder::new(file).map_err(|e| e.to_string())?;
 
     sink.append(source);
-
     Ok(())
 }
 
