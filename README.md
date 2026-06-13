@@ -7,9 +7,17 @@ The app is made in Tauri and kept simple and lightweight.
 
 ### Downloading
 The goal will be for users to install a single binary directly.
-This would be platform-dependent and systems will probably not be supported directly.
 
-The app would be downloadable from either GitHubs releases or a separate website; still to be decided.
+For now, I will try uploading a release to codeberg for Linux systems.
+It will hopefully include 3 versions:
+
+- **.deb** - Debian/Ubuntu-based distros
+- **.rpm** - Fedora/openSUSE-based distros
+- **AppImage** — Other Linux distros
+
+If that were to work as intended, then next I would be compiling for Windows.
+As I don't have a Windows machine, the plan is to mirror the repo on GitHub and use its CI to create Windows release there.
+This will, hopefully, allow users to download the app without any complicated dependency requirements or technical installation steps
 
 ## Limitations
 The languages of the audios are currently only available in German. This is noted and will hopefully get updated in due time.
@@ -38,7 +46,6 @@ But the "correct" way to do it would be:
 
 ### Compiling
 For those that can't o do don't wish to install the binary directly, they can compile the app themselves.
-When I would be at the point, I will give instructions here on how to do that.
 
     npm run tauri build -- --no-bundle
     cd src-tauri

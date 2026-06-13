@@ -1,9 +1,6 @@
 # Changelog
 
 ## v0.1.0
-Initial version.
-Includes the basic functionality rewritten from the python version.
+2026-06-13
 
-Date:
-
-* Click on Letters to listen to its Audio
+* Click on Letters to listen to their pronunciations
