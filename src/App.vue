@@ -1,38 +1,36 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { invoke } from "@tauri-apps/api/core";
+import Learn from "./components/Learn.vue";
 
-const greetMsg = ref("");
-const name = ref("");
+// Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
 
-async function greet() {
-  // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsg.value = await invoke("greet", { name: name.value });
+const currentView = ref('start'); // Defines principal viewable window at 'app-main' 
+
+function startMain() {
+  console.debug("Starting Main application")
+  currentView.value = 'learn'
 }
 </script>
 
 <template>
   <main class="container">
-    <h1>Welcome to Tauri + Vue</h1>
+    <div v-if="currentView === 'start'">
+      <h1>Yuno Learner</h1>
 
-    <form class="row" @submit.prevent="greet">
-      <input id="greet-input" v-model="name" placeholder="Enter a name..." />
-      <button type="submit">Greet</button>
-    </form>
-    <p>{{ greetMsg }}</p>
+      <div class="starter" @click="startMain">
+        <button class="main-button">Start</button>
+      </div>
+    </div>
+
+    <Learn
+      v-if="currentView === 'learn'"
+      @back-to-start="currentView = 'start'"
+    />
+
   </main>
 </template>
 
-<style scoped>
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #249b73);
-}
-
-</style>
 <style>
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -59,37 +57,11 @@ async function greet() {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 h1 {
   text-align: center;
+  font-size: 3rem;
 }
 
-input,
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -115,13 +87,23 @@ button:active {
   background-color: #e8e8e8;
 }
 
-input,
 button {
   outline: none;
 }
 
-#greet-input {
-  margin-right: 5px;
+.main-button {
+  height: 5rem;
+  width: 15rem;
+  border-color: white;
+  border-width: 0.4rem;
+  align-items: center;
+}
+
+.starter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -130,11 +112,6 @@ button {
     background-color: #2f2f2f;
   }
 
-  a:hover {
-    color: #24c8db;
-  }
-
-  input,
   button {
     color: #ffffff;
     background-color: #0f0f0f98;
