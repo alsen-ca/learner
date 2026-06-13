@@ -1,17 +1,17 @@
-## Yuno Learner
+# Yuno Learner
 YunoLearner is an easy-to-use, lightweight and free desktop app for adults who need to relearn the alphabet.
 It is designed for people recovering from aphasia, brain injury, or other conditions affecting literacy.
 The minimal interface and large, clear letters are intentional: no animations or distractions like in apps intended for children.
 
 The app is made in Tauri and kept simple and lightweight.
 
-### Downloading
+## Downloading
 The goal will be for users to install a single binary directly.
 
 For now, I will try uploading a release to codeberg for Linux systems.
 It will hopefully include 3 versions:
 
-#### Linux
+### Linux
 - **.deb** - Debian/Ubuntu-based distros
 ```bash
 sudo dpkg -i yuno-learner_0.1.0_amd64.deb
