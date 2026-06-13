@@ -17,12 +17,15 @@ Open a Discussion if you were to specifically require this or want to contribute
 
 ## Dev
 ### Requirements
+View the official documentation for details about Tauri's requirements: https://v2.tauri.app/start/prerequisites/
 
 - Rust
 - cargo
 - npm
-
-View the official documentation for more details: https://v2.tauri.app/start/prerequisites/
+- ALSA development files (for linux)
+    * Debian/Ubuntu: `libasound2-dev`
+    * Fedora: `alsa-lib-devel`
+    * Arch: `alsa-lib`
 
 ### Running
 I prefer to avoid hot-reloading, so I start the server with:
@@ -36,6 +39,10 @@ But the "correct" way to do it would be:
 ### Compiling
 For those that can't o do don't wish to install the binary directly, they can compile the app themselves.
 When I would be at the point, I will give instructions here on how to do that.
+
+    npm run tauri build -- --no-bundle
+    cd src-tauri
+    target/release/yuno-learner
 
 ## Licenses
 ### Code

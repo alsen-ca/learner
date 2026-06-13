@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { invoke } from "@tauri-apps/api/core";
-import chevronLeft from "../assets/chevron-left.svg"
-import chevronRight from "../assets/chevron-right.svg"
-import arrowLeft from "../assets/arrow-big-left.svg"
+import chevronLeft from "../assets/chevron-left.svg?url"
+import chevronRight from "../assets/chevron-right.svg?url"
+import arrowLeft from "../assets/arrow-big-left.svg?url"
 
 const emit = defineEmits(['back-to-start']);
 
@@ -20,8 +20,9 @@ function previous() {
   currentIndex.value = (currentIndex.value - 1 + letters.length) % letters.length
 }
 
-
-const letter = ref("A")
+function onLetterClick() {
+  invoke('play_sound', { letter: currentLetter.value })
+}
 
 </script>
 <template>
@@ -31,7 +32,7 @@ const letter = ref("A")
             <img :src="arrowLeft" alt="Go back to Main Page" class="back-button" @click="emit('back-to-start')"/>
         </div>
         <div class="middle-pannel">
-            <p class="main-letter">{{ currentLetter }}</p>
+            <button class="main-letter" @click="onLetterClick">{{ currentLetter }}</button>
         </div>
         <div class="right-pannel">
             <img :src="chevronRight" title="next character" class="arrow-button" @click="next"/>
@@ -90,9 +91,8 @@ const letter = ref("A")
 }
 
 .main-letter {
-    padding-top: 10rem;
+    margin-top: 10rem;
     text-align: center;
     font-size: clamp(4rem, 130vmin, 50rem);
-    line-height: 1;
 }
 </style>
