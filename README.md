@@ -11,9 +11,27 @@ The goal will be for users to install a single binary directly.
 For now, I will try uploading a release to codeberg for Linux systems.
 It will hopefully include 3 versions:
 
+#### Linux
 - **.deb** - Debian/Ubuntu-based distros
+```bash
+sudo dpkg -i yuno-learner_0.1.0_amd64.deb
+```
+Launch from your application menu afterward. To uninstall:
+```bash
+sudo dpkg -r yuno-learner
+```
+
 - **.rpm** - Fedora/openSUSE-based distros
-- **AppImage** — Other Linux distros
+```bash
+sudo rpm -i yuno-learner-0.1.0-1.x86_64.rpm
+```
+- **AppImage** - Other Linux distros
+```bash
+chmod +x yuno-learner_0.1.0_amd64.AppImage
+./yuno-learner_0.1.0_amd64.AppImage
+```
+Or double-click in your file manager after marking it executable.
+
 
 If that were to work as intended, then next I would be compiling for Windows.
 As I don't have a Windows machine, the plan is to mirror the repo on GitHub and use its CI to create Windows release there.
