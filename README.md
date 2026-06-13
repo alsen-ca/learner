@@ -32,10 +32,12 @@ chmod +x yuno-learner_0.1.0_amd64.AppImage
 ```
 Or double-click in your file manager after marking it executable.
 
+### Windows
+Download `yuno-learner_0.1.0_x64-setup.exe` and run it to install.
 
-If that were to work as intended, then next I would be compiling for Windows.
-As I don't have a Windows machine, the plan is to mirror the repo on GitHub and use its CI to create Windows release there.
-This will, hopefully, allow users to download the app without any complicated dependency requirements or technical installation steps
+Windows may show a security warning on first run. Click on "More info" -> "Run anyway" to proceed.
+
+This repository is [mirrored on Github](https://github.com/alsen-ca/learner), which is used to build the releases on Windows.
 
 ## Limitations
 The languages of the audios are currently only available in German. This is noted and will hopefully get updated in due time.
