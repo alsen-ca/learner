@@ -25,6 +25,6 @@
     "active": true,
     "targets": ["nsis", "appimage", "deb", "rpm"],
     "icon": ["icons/icon.png", "icons/icon.ico"],
-    "resources": ["assets/audios"]
+    "resources": ["assets/audios/**/*", "../LICENSE", "../src/assets/LICENSE"]
   }
 }
