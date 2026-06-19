@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { invoke } from "@tauri-apps/api/core";
 
 const emit = defineEmits(['back-to-start']);
@@ -10,29 +10,69 @@ const currentIndex = ref(0)
 const currentLetter = computed(() => letters[currentIndex.value])
 
 function next() {
-  currentIndex.value = (currentIndex.value + 1) % letters.length
+  	currentIndex.value = (currentIndex.value + 1) % letters.length
 }
 
 function previous() {
-  currentIndex.value = (currentIndex.value - 1 + letters.length) % letters.length
+  	currentIndex.value = (currentIndex.value - 1 + letters.length) % letters.length
 }
 
 function onLetterClick() {
-  invoke('play_sound', { letter: currentLetter.value })
+  	invoke('play_sound', { letter: currentLetter.value })
 }
 
+const container = ref<HTMLDivElement | null>(null)
+
+onMounted(() => {
+  	container.value?.focus()
+})
+
+function handleKeydown(e: { key: any; preventDefault: () => void; }) {
+	switch(e.key) {
+		case 'ArrowLeft':
+			e.preventDefault()
+			previous()
+			break
+		case 'ArrowRight':
+			e.preventDefault()
+			next()
+			break
+		case 'Delete':
+		case 'Del':
+		case 'Backspace':
+			e.preventDefault()
+			emit('back-to-start')
+			break
+		case ' ':
+			e.preventDefault()
+			onLetterClick()
+			break
+	}
+}
 </script>
 <template>
-    <div class="words-container">
+    <div class="words-container" @keydown="handleKeydown" tabindex="-1" ref="container">
         <div class="left-pannel">
-            <img src="../assets/chevron-left.svg" alt="previous character" class="arrow-button" @click="previous"/>
-            <img src="../assets/arrow-big-left.svg" alt="Go back to Main Page" class="back-button" @click="emit('back-to-start')"/>
+            <button class="arrow-button" @click="previous" aria-label="Previous letter" tabindex="1">
+                <img src="../assets/chevron-left.svg" alt="" />
+            </button>
+            <button class="back-button" @click="emit('back-to-start')" aria-label="Go back to main page" tabindex="4">
+                <img src="../assets/arrow-big-left.svg" alt="" />
+            </button>
         </div>
         <div class="middle-pannel">
-            <button class="main-letter" @click="onLetterClick">{{ currentLetter }}</button>
+            <button 
+                class="main-letter" 
+                @click="onLetterClick"
+                aria-live="polite"
+				tabindex="2">
+                {{ currentLetter }}
+            </button>
         </div>
         <div class="right-pannel">
-            <img src="../assets/chevron-right.svg" title="next character" class="arrow-button" @click="next"/>
+            <button class="arrow-button" @click="next" aria-label="Next letter" tabindex="3">
+                <img src="../assets/chevron-right.svg" alt="" />
+            </button>
         </div>
     </div>
 </template>
@@ -71,20 +111,40 @@ function onLetterClick() {
 }
 
 .arrow-button {
-    height: auto;
-    width: 100%;
-    cursor: pointer;
-    box-sizing: border-box;
-    border: 0.5px dashed gray;
+	height: auto;
+	width: 100%;
+	cursor: pointer;
+	box-sizing: border-box;
+	border: 0.5px dashed gray;
+	background: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+button:focus-visible {
+	outline: 3px solid gray;
+	outline-offset: 4px;
+	border-radius: 4px;
+}
+
+.arrow-button img,
+.back-button img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
 .back-button {
-    position: absolute;
-    width: 3.5rem;
-    height: auto;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    cursor: pointer;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 3.5rem;
+	height: auto;
+	cursor: pointer;
+	background: none;
+	border: none;
+	padding: 0;
 }
 
 .main-letter {

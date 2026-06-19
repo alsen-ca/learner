@@ -5,7 +5,7 @@ The minimal interface and large, clear letters are intentional: no animations or
 
 The app is made in Tauri and kept simple and lightweight.
 
-## Downloading
+## Download
 The goal will be for users to install a single binary directly.
 
 View on the releases page for the different installation options depending on your OS.
