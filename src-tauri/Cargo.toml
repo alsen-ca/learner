@@ -1,6 +1,6 @@
 [package]
 name = "yuno-learner"
-version = "0.1.0"
+version = "0.1.1"
 description = "A minimal desktop app for adults to relearn alphabet letters and their sound"
 authors = ["Sebastian Alsen"]
 edition = "2021"

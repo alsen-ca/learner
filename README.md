@@ -12,7 +12,7 @@ View on the releases page for the different installation options depending on yo
 It is not available on MacOS, you would need to compile it yourself.
 
 ### Windows
-Download `yuno-learner_0.1.0_x64-setup.exe` and run it to install.
+Download `yuno-learner_0.1.1_x64-setup.exe` and run it to install.
 
 Windows may show a security warning on first run. Click on "More info" -> "Run anyway" to proceed.
 
@@ -21,7 +21,7 @@ This repository is [mirrored on Github](https://github.com/alsen-ca/learner), wh
 ### Linux
 - **.deb** - Debian/Ubuntu-based distros
 ```bash
-sudo dpkg -i yuno-learner_0.1.0_amd64.deb
+sudo dpkg -i yuno-learner_0.1.1_amd64.deb
 ```
 Launch from your application menu afterward. To uninstall:
 ```bash
@@ -30,12 +30,12 @@ sudo dpkg -r yuno-learner
 
 - **.rpm** - Fedora/openSUSE-based distros
 ```bash
-sudo rpm -i yuno-learner-0.1.0-1.x86_64.rpm
+sudo rpm -i yuno-learner-0.1.1-1.x86_64.rpm
 ```
 - **AppImage** - Other Linux distros
 ```bash
-chmod +x yuno-learner_0.1.0_amd64.AppImage
-./yuno-learner_0.1.0_amd64.AppImage
+chmod +x yuno-learner_0.1.1_amd64.AppImage
+./yuno-learner_0.1.1_amd64.AppImage
 ```
 Or double-click in your file manager after marking it executable.
 
